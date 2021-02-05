@@ -1,23 +1,25 @@
 
-  <mat-grid-list cols="3" rowHeight="450px"   >
+  <mat-grid-list cols="4" rowHeight="450px"   >
 
 
-    <mat-grid-tile *ngFor="let prod of produits ;">
-      
+    <mat-grid-tile class="contain" *ngFor="let prod of filterProduct ;">
+
         <mat-drawer-container class="example-container" autosize >
-          <h1>{{prod.nom}}</h1>
+          
             <mat-drawer #drawer class="example-sidenav" mode="side">
-              <p>{{prod.nom}}</p>
-              <p *ngIf="prod.showFiller">{{prod.description}}</p>
+              <p>{{prod.payload.doc.data().nom}}</p>
+              <p *ngIf="prod.showFiller">{{prod.payload.doc.data().desc}}</p>
               <button type="button "id="txt"  (click)="prod.showFiller = !prod.showFiller" mat-raised-button >
                 Description
               </button>
             </mat-drawer>
             
             <div class="example-sidenav-content" >
-              
-              <img src="{{prod.image}}" (click)=" drawer.toggle() ">
+              <h1>{{prod.payload.doc.data().nom}}</h1>
+              <img src="{{prod.payload.doc.data().img}}"  (click)=" drawer.toggle() ">
+              <p>{{prod.payload.doc.data().prix}}</p>
             </div>
+           
           
           </mat-drawer-container>
           

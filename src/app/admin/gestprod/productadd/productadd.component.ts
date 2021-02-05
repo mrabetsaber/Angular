@@ -1,5 +1,6 @@
+import { CategorieService } from '../../../services/categorie.service';
 
-import { CategorieService } from './../../../services/categorie.service';
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, RequiredValidator} from '@angular/forms'; 
 import { Router } from '@angular/router';
@@ -59,7 +60,9 @@ export class ProductaddComponent implements OnInit {
       this.selectedImg=e.target.files[0];
       
       const metaData={'contentType':this.selectedImg.type}
-      const storageRef:firebase.default.storage.Reference = firebase.default.storage().ref('/photos/featured/url1')
+      console.log(this.selectedImg.name);
+      
+      const storageRef:firebase.default.storage.Reference = firebase.default.storage().ref('/photos/featured/'+this.selectedImg.name)
       const uploadTask :firebase.default.storage.UploadTask= storageRef.put(this.selectedImg,metaData);
       console.log("uploading" , this.selectedImg.name);
       

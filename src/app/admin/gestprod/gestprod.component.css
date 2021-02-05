@@ -3,6 +3,7 @@ table {
   }
 td{
   width: 20%;
+  text-align: center;
 }
 .mat-form-field + .mat-form-field {
   margin-left: 8px;
@@ -14,8 +15,12 @@ th{
 h4{
   font-weight: bolder;
   color:black;
-  margin-left: 35%;
+  margin-left: 40%;
+  margin-right: 45%;
 }
 .example-full-widt{
   margin-left: 40%;
+}
+img{
+  width: 40%;
 }

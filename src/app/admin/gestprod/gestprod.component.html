@@ -2,9 +2,9 @@
 
 <router-outlet></router-outlet>
 <br>
-<h4>tu peux chercher les produit par cathegories </h4>
+<h4>Entrez le nom de Produit</h4>
 <mat-form-field class="example-full-widt" hideRequiredMarker>
-  <mat-label>Chercher par cathegorie</mat-label>
+  <mat-label>Chercher</mat-label>
   <input
     matInput 
     class="input-filter"
@@ -58,7 +58,7 @@
         
           <mat-form-field class="example-full-width" hideRequiredMarker>
             <mat-label>le nouveau prix</mat-label>
-            <input matInput  type="number"   (input)="prix=$event.target.value" >
+            <input matInput  type="number" value={{p.payload.doc.data().prix}}  (input)="prix=$event.target.value" >
           </mat-form-field>
           <button mat-raised-button (click)="changePrix(p.payload.doc.id)" >modifier</button>
       </mat-expansion-panel>
@@ -73,28 +73,34 @@
         
           <mat-form-field class="example-full-width" hideRequiredMarker>
             <mat-label>la nouveau cathegorie</mat-label>
-            <input matInput  type="text" (input)="cat=$event.target.value"  >
+            <input matInput  type="text" value={{p.payload.doc.data().cat}} (input)="cat=$event.target.value"  >
           </mat-form-field>
           <button mat-raised-button (click)="changeCat(p.payload.doc.id)" >modifier</button>
       </mat-expansion-panel>
     </mat-accordion>
 </td>
-  <td>
-      <mat-accordion>
-        <mat-expansion-panel >
-          <mat-expansion-panel-header>
-            <mat-panel-title>{{p.payload.doc.data().desc}}</mat-panel-title>
-          </mat-expansion-panel-header>
-          
-            <mat-form-field class="example-full-width" hideRequiredMarker>
-              <mat-label>la nouveau description</mat-label>
-              <textarea matInput  type="text" (input)="desc=$event.target.value"  ></textarea>   
-            </mat-form-field>
-            <button mat-raised-button (click)="changeDesc(p.payload.doc.id)" >modifier</button>
-        </mat-expansion-panel>
-      </mat-accordion>
-  </td>
-  
+<td>
+    <mat-accordion>
+      <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{p.payload.doc.data().desc}}</mat-panel-title>
+        </mat-expansion-panel-header>
+        
+          <mat-form-field class="example-full-width" hideRequiredMarker>
+            <mat-label>la nouveau description</mat-label>
+            <textarea matInput  type="text" value={{p.payload.doc.data().desc}} (input)="desc=$event.target.value"  ></textarea>   
+          </mat-form-field>
+          <button mat-raised-button (click)="changeDesc(p.payload.doc.id)" >modifier</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+</td>
+<td>
+    
+    <input  type="file" hidden id="file" (change)="changeImg($event,p.payload.doc.id)"  >
+      
+      <label class="inputImg"  for="file"><img src="{{p.payload.doc.data().img}}" ></label>
+</td>
+
   <td>
     <button mat-raised-button style="margin-left: 4%;" (click)="supprimerProd(p.payload.doc.id) " color="warn" >supprimer</button>
     
